@@ -1,0 +1,6 @@
+name: openshift4-version
+title: OpenShift 4 Version
+version: master
+start_page: ROOT:index.adoc
+nav:
+  - modules/ROOT/partials/nav.adoc

@@ -1,0 +1,46 @@
+= Parameters
+
+The parent key for all of the following parameters is `openshift4_version`.
+
+== `spec`
+
+
+
+[horizontal]
+type:: object
+default::
++
+[source,yaml]
+----
+channel: stable-4.4
+clusterID: ${openshift:clusterID}
+upstream: https://api.openshift.com/api/upgrades_info/v1/graph
+----
+
+See the https://docs.openshift.com/container-platform/latest/updating/updating-cluster-between-minor.html[OpenShift docs] for available paramters and values.
+
+The `clusterID` is supposed to be extracted from the cluster as a fact.
+The tools of project Syn don't yet allow to do so.
+For now, this behavior gets mimicked by setting the parameter `openshift.clusterID` instead.
+
+== Example
+
+[source,yaml]
+----
+parameters:
+  openshift:
+    clusterID: '6d8329e3-7098-4bab-b7d8-11f1dc353481'
+
+  openshift4_version:
+    spec:
+      desiredUpdate:
+        force: false
+        image: quay.io/openshift-release-dev/ocp-release@sha256:7613d8f7db639147b91b16b54b24cfa351c3cbde6aa7b7bf1b9c80c260efad06
+        version: 4.4.6
+----
+
+[NOTE]
+====
+This example assumes that `openshift4_version.spec.clusterID` is set to `${openshift.clusterID}` somewhere in the inventory.
+Due to https://github.com/projectsyn/commodore/issues/138, this can not yet be done in the defaults.
+====

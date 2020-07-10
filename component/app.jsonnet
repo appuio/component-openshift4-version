@@ -3,7 +3,7 @@ local inv = kap.inventory();
 local params = inv.parameters.openshift4_version;
 local argocd = import 'lib/argocd.libjsonnet';
 
-local app = argocd.App('openshift4-version', params.namespace);
+local app = argocd.App('openshift4-version', 'syn');
 
 {
   'openshift4-version': app,

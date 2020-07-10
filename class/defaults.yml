@@ -1,3 +1,5 @@
 parameters:
   openshift4_version:
-    namespace: syn-openshift4-version
+    spec:
+      channel: stable-4.4
+      upstream: https://api.openshift.com/api/upgrades_info/v1/graph

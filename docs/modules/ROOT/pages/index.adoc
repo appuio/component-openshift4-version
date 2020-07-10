@@ -1,3 +1,7 @@
 = OpenShift 4 Version: A Commodore component to manage OpenShift 4 Version
 
-{doctitle} is a Commodore component for Managing OpenShift 4 Version.
+{doctitle} is a Commodore component for managing the OpenShift 4 cluster version.
+It takes over control of the ClusterVersion object named version.
+By this, the component allows to control which version the cluster is running.
+
+See the xref:references/parameters.adoc[parameters] reference for further details.

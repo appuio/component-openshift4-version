@@ -20,8 +20,8 @@ upstream: https://api.openshift.com/api/upgrades_info/v1/graph
 See the https://docs.openshift.com/container-platform/latest/updating/updating-cluster-between-minor.html[OpenShift docs] for available paramters and values.
 
 The `clusterID` is supposed to be extracted from the cluster as a fact.
-The tools of project Syn dosn't yet allow to do so.
-For now, this behaviour gets mimiked by setting the paramater `openshift.clusterID` instead.
+The tools of project Syn don't yet allow to do so.
+For now, this behavior gets mimicked by setting the parameter `openshift.clusterID` instead.
 
 == Example
 

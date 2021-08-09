@@ -12,7 +12,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Disable Kapitan plugin ([#2])
+- Upgraded default Channel to stable-4.8 ([#4])
 
 [Unreleased]: https://github.com/appuio/component-openshift4-version/compare/8339a45...HEAD
 [#1]: https://github.com/appuio/component-openshift4-version/pull/1
 [#2]: https://github.com/appuio/component-openshift4-version/pull/2
+[#4]: https://github.com/appuio/component-openshift4-version/pull/4

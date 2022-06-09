@@ -1,6 +1,2 @@
 :global:
-  componentName: openshift4-version
-
-docs/antora.yml:
-  name: openshift4-version
-  title: OpenShift 4 Version
+  componentName: OpenShift 4 Version

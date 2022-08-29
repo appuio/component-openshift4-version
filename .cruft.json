@@ -1,0 +1,21 @@
+{
+  "template": "https://github.com/projectsyn/commodore-component-template.git",
+  "commit": "e6c4fd69190db1ad12e941d578b9423d0e2f993c",
+  "checkout": "main",
+  "context": {
+    "cookiecutter": {
+      "name": "OpenShift 4 Version",
+      "slug": "openshift4-version",
+      "parameter_key": "openshift4_version",
+      "test_cases": "defaults",
+      "add_golden": "n",
+      "add_matrix": "n",
+      "add_go_unit": "n",
+      "github_owner": "appuio",
+      "github_name": "component-openshift4-version",
+      "github_url": "https://github.com/appuio/component-openshift4-version",
+      "_template": "https://github.com/projectsyn/commodore-component-template.git"
+    }
+  },
+  "directory": null
+}

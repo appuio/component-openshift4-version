@@ -2,6 +2,21 @@
 
 The parent key for all of the following parameters is `openshift4_version`.
 
+== `openshiftVersion`
+
+[horizontal]
+type:: object
+default::
++
+[source,yaml]
+----
+Major: '4'
+Minor: '8'
+----
+
+This parameter is used to conditionally add configurations in the `ClusterVersion` object.
+The component currently uses this parameter to set the default value for field `capabilities.baselineCapabilitySet`, which was introduced in OpenShift 4.11, to `v4.11`.
+
 == `spec`
 
 
@@ -25,6 +40,8 @@ The value for this field is supposed to be extracted from the cluster as a fact.
 However, the corresponding dynamic fact isn't implemented yet.
 We recommend that users set `spec.clusterID` to a non-component parameter such as `openshift.clusterID` in the config hierarchy.
 ====
+
+Values specified in this parameter take precedence over default values derived from parameter `openshiftVersion`.
 
 == Example
 

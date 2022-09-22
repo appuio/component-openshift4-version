@@ -13,18 +13,37 @@ default::
 [source,yaml]
 ----
 channel: stable-4.8
-clusterID: ${openshift:clusterID}
 upstream: https://api.openshift.com/api/upgrades_info/v1/graph
 ----
 
-See the https://docs.openshift.com/container-platform/latest/updating/updating-cluster-between-minor.html[OpenShift docs] for available paramters and values.
+See the https://docs.openshift.com/container-platform/latest/updating/updating-cluster-between-minor.html[OpenShift docs] for available parameters and values.
 
-The `clusterID` is supposed to be extracted from the cluster as a fact.
-The tools of project Syn don't yet allow to do so.
-For now, this behavior gets mimicked by setting the parameter `openshift.clusterID` instead.
+[NOTE]
+====
+Field `clusterID` must be set in the `ClusterVersion` object.
+The value for this field is supposed to be extracted from the cluster as a fact.
+However, the corresponding dynamic fact isn't implemented yet.
+We recommend that users set `spec.clusterID` to a non-component parameter such as `openshift.clusterID` in the config hierarchy.
+====
 
 == Example
 
+We recommend configuring a reference for component parameter `openshift4_version.spec.clusterID` for all OpenShift 4 clusters:
+
+.openshift4.yml
+[source,yaml]
+----
+parameters:
+  openshift:
+    clusterID: 'OVERRIDE_THIS_IN_THE_CLUSTER_CONFIG'
+  openshift4_version:
+    spec:
+      clusterID: ${openshift.clusterID}
+----
+
+With this approach, each individual cluster config only needs to set generic parameter `openshift.clusterID`.
+
+.cluster.yml
 [source,yaml]
 ----
 parameters:

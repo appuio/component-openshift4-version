@@ -1,0 +1,4 @@
+parameters:
+  openshift4_version:
+    openshiftVersion:
+      Minor: '11'

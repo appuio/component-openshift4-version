@@ -1,0 +1,12 @@
+apiVersion: config.openshift.io/v1
+kind: ClusterVersion
+metadata:
+  annotations: {}
+  labels:
+    name: version
+  name: version
+spec:
+  capabilities:
+    baselineCapabilitySet: v4.11
+  channel: stable-4.8
+  upstream: https://api.openshift.com/api/upgrades_info/v1/graph

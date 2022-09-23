@@ -1,5 +1,8 @@
 parameters:
   openshift4_version:
+    openshiftVersion:
+      Major: "4"
+      Minor: "8"
     spec:
       channel: stable-4.8
       upstream: https://api.openshift.com/api/upgrades_info/v1/graph

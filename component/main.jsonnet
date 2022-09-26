@@ -15,6 +15,7 @@ local clusterVersion = kube._Object('config.openshift.io/v1', 'ClusterVersion', 
     [if cluster_gt_411 then 'capabilities']: {
       baselineCapabilitySet: 'v4.11',
     },
+    channel: 'stable-%(Major)s.%(Minor)s' % params.openshiftVersion,
   } + com.makeMergeable(params.spec),
 };
 

@@ -15,7 +15,12 @@ Minor: '8'
 ----
 
 This parameter is used to conditionally add configurations in the `ClusterVersion` object.
-The component currently uses this parameter to set the default value for field `capabilities.baselineCapabilitySet`, which was introduced in OpenShift 4.11, to `v4.11`.
+
+The component currently uses this parameter to set default values for
+* field `capabilities.baselineCapabilitySet`, which was introduced in OpenShift 4.11.
+The component defaults this field to `v4.11`.
+* field `channel`.
+The component sets this field to `stable-<Major>.<Minor>`, where `<Major>` and `<Minor>` are replaced with the values of fields `Major` and `Minor` of this parameter.
 
 == `spec`
 
@@ -27,7 +32,6 @@ default::
 +
 [source,yaml]
 ----
-channel: stable-4.8
 upstream: https://api.openshift.com/api/upgrades_info/v1/graph
 ----
 

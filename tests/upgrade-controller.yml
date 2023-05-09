@@ -1,0 +1,2 @@
+applications:
+  - openshift-upgrade-controller

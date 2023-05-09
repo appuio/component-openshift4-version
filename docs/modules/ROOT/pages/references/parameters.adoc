@@ -24,8 +24,6 @@ The component sets this field to `stable-<Major>.<Minor>`, where `<Major>` and `
 
 == `spec`
 
-
-
 [horizontal]
 type:: object
 default::
@@ -46,6 +44,17 @@ We recommend that users set `spec.clusterID` to a non-component parameter such a
 ====
 
 Values specified in this parameter take precedence over default values derived from parameter `openshiftVersion`.
+
+
+== `images`
+[horizontal]
+type:: dict
+default:: See https://github.com/projectsyn/component-rook-ceph/blob/master/class/defaults.yml[`class/defaults.yml` on Github]
+
+This parameter allows selecting the Docker images to use for the job making the cluster version unmanaged.
+Each image is specified using keys `registry`, `image` and `tag`.
+This structure allows easily injecting a registry mirror, if required.
+
 
 == Example
 

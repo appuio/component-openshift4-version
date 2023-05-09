@@ -11,6 +11,11 @@ local cluster_gt_411 =
   std.parseInt(params.openshiftVersion.Minor) >= 11;
 
 local clusterVersion = kube._Object('config.openshift.io/v1', 'ClusterVersion', 'version') {
+  metadata+: {
+    annotations+: {
+      'argocd.argoproj.io/sync-options': 'Prune=false',
+    },
+  },
   spec: {
     [if cluster_gt_411 then 'capabilities']: {
       baselineCapabilitySet: 'v4.11',

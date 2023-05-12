@@ -1,13 +1,13 @@
 {
   "template": "https://github.com/projectsyn/commodore-component-template.git",
-  "commit": "956a1b342ed680b02b1fb1b646dc5d4c640e2028",
+  "commit": "880649ead47cceac7eaffd954f836e1428160fca",
   "checkout": "main",
   "context": {
     "cookiecutter": {
       "name": "OpenShift 4 Version",
       "slug": "openshift4-version",
       "parameter_key": "openshift4_version",
-      "test_cases": "defaults openshift-4.11",
+      "test_cases": "defaults openshift-4.11 upgrade-controller",
       "add_lib": "n",
       "add_pp": "n",
       "add_golden": "y",

@@ -1,0 +1,99 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: '-10'
+  labels:
+    name: clusterversion-make-unmanaged
+  name: clusterversion-make-unmanaged
+rules:
+  - apiGroups:
+      - config.openshift.io
+    resourceNames:
+      - version
+    resources:
+      - clusterversions
+    verbs:
+      - get
+      - patch
+      - update
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: '-10'
+  labels:
+    name: clusterversion-make-unmanaged
+  name: clusterversion-make-unmanaged
+  namespace: openshift-cluster-version
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: '-10'
+  labels:
+    name: clusterversion-make-unmanaged
+  name: clusterversion-make-unmanaged
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: clusterversion-make-unmanaged
+subjects:
+  - kind: ServiceAccount
+    name: clusterversion-make-unmanaged
+    namespace: openshift-cluster-version
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  annotations:
+    argocd.argoproj.io/hook: Sync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+    argocd.argoproj.io/sync-wave: '-10'
+  labels:
+    name: clusterversion-make-unmanaged
+  name: clusterversion-make-unmanaged
+  namespace: openshift-cluster-version
+spec:
+  completions: 1
+  parallelism: 1
+  template:
+    metadata:
+      labels:
+        name: clusterversion-make-unmanaged
+    spec:
+      containers:
+        - args:
+            - -eu
+            - -c
+            - |
+              #!/bin/sh
+              set -eu
+
+              kubectl annotate --overwrite clusterversion version argocd.argoproj.io/sync-options='Prune=false,Delete=false'
+              kubectl label clusterversion version argocd.argoproj.io/instance-
+          command:
+            - sh
+          env:
+            - name: HOME
+              value: /export
+          image: docker.io/bitnami/kubectl:1.25.5@sha256:d4a21c081ec10396029758e340ec9ba09bc9dbc9066bb0f55f1cba56ab1cf598
+          imagePullPolicy: IfNotPresent
+          name: clusterversion-make-unmanaged
+          ports: []
+          stdin: false
+          tty: false
+          volumeMounts:
+            - mountPath: /export
+              name: export
+          workingDir: /export
+      imagePullSecrets: []
+      initContainers: []
+      restartPolicy: OnFailure
+      serviceAccountName: clusterversion-make-unmanaged
+      terminationGracePeriodSeconds: 30
+      volumes:
+        - emptyDir: {}
+          name: export

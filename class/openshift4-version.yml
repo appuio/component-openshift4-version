@@ -7,5 +7,6 @@ parameters:
         output_path: apps/
       - input_paths:
           - openshift4-version/component/main.jsonnet
+          - openshift4-version/component/make_unmanaged.jsonnet
         input_type: jsonnet
         output_path: openshift4-version/
